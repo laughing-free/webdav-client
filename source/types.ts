@@ -1,6 +1,5 @@
 import * as Stream from "node:stream";
-import { Response } from "@buttercup/fetch";
-
+import { Response, fetch } from "@buttercup/fetch";
 export { Request, Response } from "@buttercup/fetch";
 
 export type AuthHeader = string;
@@ -224,6 +223,7 @@ interface RequestOptionsBase {
     transformResponse?: Array<(value: any) => any>;
     url?: string;
     withCredentials?: boolean;
+    customFetch?: typeof fetch;
 }
 
 export interface RequestOptionsCustom extends RequestOptionsBase {}
@@ -336,6 +336,7 @@ export interface WebDAVClientContext {
     token?: OAuthToken;
     username?: string;
     withCredentials?: boolean;
+    customFetch?: typeof fetch;
 }
 
 export interface WebDAVClientError extends Error {
@@ -358,6 +359,7 @@ export interface WebDAVClientOptions {
     token?: OAuthToken;
     username?: string;
     withCredentials?: boolean;
+    customFetch?: typeof fetch;
 }
 
 export interface WebDAVMethodOptions {

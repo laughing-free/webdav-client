@@ -89,6 +89,9 @@ export function prepareRequestOptions(
     if (typeof context.withCredentials === "boolean") {
         finalOptions.withCredentials = context.withCredentials;
     }
+    if (context.customFetch) {
+        finalOptions.customFetch = context.customFetch;
+    }
     return finalOptions;
 }
 
@@ -166,7 +169,7 @@ function requestStandard(requestOptions: RequestOptions): Promise<Response> {
         (options: RequestOptions) =>
             patcher.patchInline(
                 "fetch",
-                fetch,
+                options.customFetch || fetch,
                 options.url,
                 getFetchOptions(options) as RequestInit
             ),
