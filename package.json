@@ -1,5 +1,5 @@
 {
-  "name": "webdav",
+  "name": "@laughing-free/webdav",
   "version": "5.8.1",
   "description": "WebDAV client for NodeJS",
   "exports": {

@@ -6,6 +6,8 @@
 
 ## About
 
+Notice: This is a repository fork from [`webdav`](https://github.com/perry-mitchell/webdav-client).
+
 WebDAV is a well-known, stable and highly flexible protocol for interacting with remote filesystems via an API. Being that it is so widespread, many file hosting services such as **Nextcloud**/**ownCloud**, **Box** and **Yandex** use it as a fallback to their primary interfaces.
 
 This library provides a **WebDAV client** interface that makes interacting with WebDAV enabled services easy. The API returns promises and resolve with the results. It parses and prepares directory-contents requests for easy consumption, as well as providing methods for fetching things like file stats and quotas.
@@ -31,6 +33,24 @@ If you're not ready to upgrade, you may consider using version 4 of this library
 This library uses [`@buttercup/fetch`](https://github.com/buttercup/fetch) to make requests in a cross-platform manner. It uses the browser's native `fetch` if present, or a polyfill if not. In Node and other environments it uses [`node-fetch`](https://github.com/node-fetch/node-fetch).
 
 Versions before v5 used Axios for requests.
+
+If you want to use your own fetch function, you can use ``customFetch`` property, this is a type of ``fetch`` of ``@buttercup/fetch``, demo code:
+
+```ts
+import { fetch } from '@buttercup/fetch'; // Make you own fetch function
+
+export async function createWebDAVClient(
+  baseUrl: string,
+  username: string,
+  password: string
+): Promise<WebDAVClient> {
+  return createClient(baseUrl, {
+    username,
+    password,
+    customFetch: fetch // custom fetch
+  });
+}
+```
 
 #### Node support
 
